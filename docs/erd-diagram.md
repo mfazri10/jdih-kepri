@@ -60,13 +60,13 @@ erDiagram
     %% Entities Definition
     
     users {
-        uuid id PK
+        bigint unsigned id PK, AUTO_INCREMENT
         string username UK
         string email UK
         string password_hash
         string full_name
         string nip
-        uuid role_id FK
+        bigint unsigned role_id FK
         string phone
         string avatar_url
         boolean is_active
@@ -79,7 +79,7 @@ erDiagram
     }
     
     roles {
-        uuid id PK
+        bigint unsigned id PK, AUTO_INCREMENT
         string name UK
         string display_name
         text description
@@ -91,7 +91,7 @@ erDiagram
     }
     
     permissions {
-        uuid id PK
+        bigint unsigned id PK, AUTO_INCREMENT
         string name UK
         string display_name
         string module
@@ -100,21 +100,21 @@ erDiagram
     }
     
     role_permissions {
-        uuid id PK
-        uuid role_id FK
-        uuid permission_id FK
+        bigint unsigned id PK, AUTO_INCREMENT
+        bigint unsigned role_id FK
+        bigint unsigned permission_id FK
         timestamp granted_at
-        uuid granted_by FK
+        bigint unsigned granted_by FK
     }
     
     documents {
-        uuid id PK
+        bigint unsigned id PK, AUTO_INCREMENT
         string doc_number UK
         string title
         text abstract
-        uuid type_id FK
-        uuid category_id FK
-        uuid status_id FK
+        bigint unsigned type_id FK
+        bigint unsigned category_id FK
+        bigint unsigned status_id FK
         date published_date
         date effective_date
         string issuing_institution
@@ -124,9 +124,9 @@ erDiagram
         text notes
         int view_count
         int download_count
-        uuid created_by FK
-        uuid updated_by FK
-        uuid approved_by FK
+        bigint unsigned created_by FK
+        bigint unsigned updated_by FK
+        bigint unsigned approved_by FK
         timestamp approved_at
         boolean is_featured
         boolean is_archived
@@ -138,7 +138,7 @@ erDiagram
     }
     
     document_types {
-        uuid id PK
+        bigint unsigned id PK, AUTO_INCREMENT
         string code UK
         string name
         text description
@@ -151,11 +151,11 @@ erDiagram
     }
     
     categories {
-        uuid id PK
+        bigint unsigned id PK, AUTO_INCREMENT
         string code UK
         string name
         text description
-        uuid parent_id FK
+        bigint unsigned parent_id FK
         string path
         int level
         int sort_order
@@ -165,7 +165,7 @@ erDiagram
     }
     
     status {
-        uuid id PK
+        bigint unsigned id PK, AUTO_INCREMENT
         string code UK
         string name
         string color
@@ -176,8 +176,8 @@ erDiagram
     }
     
     document_versions {
-        uuid id PK
-        uuid document_id FK
+        bigint unsigned id PK, AUTO_INCREMENT
+        bigint unsigned document_id FK
         int version_number
         string title
         text change_summary
@@ -187,23 +187,23 @@ erDiagram
         bigint file_size
         string mime_type
         string checksum
-        uuid created_by FK
+        bigint unsigned created_by FK
         jsonb metadata
         timestamp created_at
     }
     
     document_relations {
-        uuid id PK
-        uuid source_document_id FK
-        uuid target_document_id FK
+        bigint unsigned id PK, AUTO_INCREMENT
+        bigint unsigned source_document_id FK
+        bigint unsigned target_document_id FK
         string relation_type
         text description
-        uuid created_by FK
+        bigint unsigned created_by FK
         timestamp created_at
     }
     
     tags {
-        uuid id PK
+        bigint unsigned id PK, AUTO_INCREMENT
         string name UK
         string slug UK
         text description
@@ -213,16 +213,16 @@ erDiagram
     }
     
     document_tags {
-        uuid id PK
-        uuid document_id FK
-        uuid tag_id FK
-        uuid created_by FK
+        bigint unsigned id PK, AUTO_INCREMENT
+        bigint unsigned document_id FK
+        bigint unsigned tag_id FK
+        bigint unsigned created_by FK
         timestamp created_at
     }
     
     document_attachments {
-        uuid id PK
-        uuid document_id FK
+        bigint unsigned id PK, AUTO_INCREMENT
+        bigint unsigned document_id FK
         string file_name
         string file_path
         bigint file_size
@@ -230,19 +230,19 @@ erDiagram
         string type
         text description
         int sort_order
-        uuid uploaded_by FK
+        bigint unsigned uploaded_by FK
         timestamp created_at
     }
     
     comments {
-        uuid id PK
-        uuid document_id FK
-        uuid parent_id FK
-        uuid user_id FK
+        bigint unsigned id PK, AUTO_INCREMENT
+        bigint unsigned document_id FK
+        bigint unsigned parent_id FK
+        bigint unsigned user_id FK
         text content
         boolean is_internal
         boolean is_approved
-        uuid approved_by FK
+        bigint unsigned approved_by FK
         timestamp approved_at
         timestamp created_at
         timestamp updated_at
@@ -250,26 +250,26 @@ erDiagram
     }
     
     workflow_templates {
-        uuid id PK
+        bigint unsigned id PK, AUTO_INCREMENT
         string name UK
         text description
-        uuid document_type_id FK
+        bigint unsigned document_type_id FK
         boolean is_active
         boolean is_default
         jsonb config
-        uuid created_by FK
+        bigint unsigned created_by FK
         timestamp created_at
         timestamp updated_at
     }
     
     workflow_steps {
-        uuid id PK
-        uuid template_id FK
+        bigint unsigned id PK, AUTO_INCREMENT
+        bigint unsigned template_id FK
         string name
         text description
         int step_order
         string step_type
-        uuid role_id FK
+        bigint unsigned role_id FK
         int required_approvals
         int timeout_hours
         jsonb conditions
@@ -279,12 +279,12 @@ erDiagram
     }
     
     workflow_instances {
-        uuid id PK
-        uuid document_id FK
-        uuid template_id FK
+        bigint unsigned id PK, AUTO_INCREMENT
+        bigint unsigned document_id FK
+        bigint unsigned template_id FK
         string status
-        uuid current_step_id FK
-        uuid initiated_by FK
+        bigint unsigned current_step_id FK
+        bigint unsigned initiated_by FK
         timestamp initiated_at
         timestamp completed_at
         jsonb metadata
@@ -293,9 +293,9 @@ erDiagram
     }
     
     workflow_step_instances {
-        uuid id PK
-        uuid workflow_instance_id FK
-        uuid workflow_step_id FK
+        bigint unsigned id PK, AUTO_INCREMENT
+        bigint unsigned workflow_instance_id FK
+        bigint unsigned workflow_step_id FK
         int step_order
         string status
         timestamp started_at
@@ -307,9 +307,9 @@ erDiagram
     }
     
     workflow_approvals {
-        uuid id PK
-        uuid step_instance_id FK
-        uuid user_id FK
+        bigint unsigned id PK, AUTO_INCREMENT
+        bigint unsigned step_instance_id FK
+        bigint unsigned user_id FK
         string action
         text comment
         jsonb data
@@ -318,8 +318,8 @@ erDiagram
     }
     
     document_statistics {
-        uuid id PK
-        uuid document_id FK
+        bigint unsigned id PK, AUTO_INCREMENT
+        bigint unsigned document_id FK
         date stat_date
         int views
         int downloads
@@ -331,15 +331,15 @@ erDiagram
     }
     
     document_search_index {
-        uuid id PK
-        uuid document_id FK
+        bigint unsigned id PK, AUTO_INCREMENT
+        bigint unsigned document_id FK
         tsvector search_vector
         jsonb indexed_fields
         timestamp indexed_at
     }
     
     search_queries {
-        uuid id PK
+        bigint unsigned id PK, AUTO_INCREMENT
         string query_text UK
         int search_count
         timestamp last_searched_at
@@ -347,9 +347,9 @@ erDiagram
     }
     
     search_query_logs {
-        uuid id PK
-        uuid user_id FK
-        uuid search_query_id FK
+        bigint unsigned id PK, AUTO_INCREMENT
+        bigint unsigned user_id FK
+        bigint unsigned search_query_id FK
         string query_text
         jsonb filters
         int results_count
@@ -357,28 +357,28 @@ erDiagram
     }
     
     bookmarks {
-        uuid id PK
-        uuid user_id FK
-        uuid document_id FK
+        bigint unsigned id PK, AUTO_INCREMENT
+        bigint unsigned user_id FK
+        bigint unsigned document_id FK
         text notes
         timestamp created_at
     }
     
     reading_history {
-        uuid id PK
-        uuid user_id FK
-        uuid document_id FK
+        bigint unsigned id PK, AUTO_INCREMENT
+        bigint unsigned user_id FK
+        bigint unsigned document_id FK
         int duration_seconds
         int progress_percentage
         timestamp read_at
     }
     
     user_activities {
-        uuid id PK
-        uuid user_id FK
+        bigint unsigned id PK, AUTO_INCREMENT
+        bigint unsigned user_id FK
         string activity_type
         string entity_type
-        uuid entity_id
+        bigint unsigned entity_id
         jsonb data
         string ip_address
         string user_agent
@@ -386,11 +386,11 @@ erDiagram
     }
     
     audit_logs {
-        uuid id PK
-        uuid user_id FK
+        bigint unsigned id PK, AUTO_INCREMENT
+        bigint unsigned user_id FK
         string action
         string entity_type
-        uuid entity_id
+        bigint unsigned entity_id
         jsonb old_values
         jsonb new_values
         string ip_address
@@ -399,8 +399,8 @@ erDiagram
     }
     
     notifications {
-        uuid id PK
-        uuid user_id FK
+        bigint unsigned id PK, AUTO_INCREMENT
+        bigint unsigned user_id FK
         string type
         string title
         text message
@@ -411,8 +411,8 @@ erDiagram
     }
     
     document_analytics {
-        uuid id PK
-        uuid document_id FK
+        bigint unsigned id PK, AUTO_INCREMENT
+        bigint unsigned document_id FK
         date analytics_date
         int unique_visitors
         int total_views
@@ -425,8 +425,8 @@ erDiagram
     }
     
     user_analytics {
-        uuid id PK
-        uuid user_id FK
+        bigint unsigned id PK, AUTO_INCREMENT
+        bigint unsigned user_id FK
         date analytics_date
         int documents_viewed
         int documents_downloaded
@@ -439,8 +439,8 @@ erDiagram
     }
     
     api_keys {
-        uuid id PK
-        uuid user_id FK
+        bigint unsigned id PK, AUTO_INCREMENT
+        bigint unsigned user_id FK
         string key_hash UK
         string name
         text description
@@ -453,9 +453,9 @@ erDiagram
     }
     
     api_requests {
-        uuid id PK
-        uuid api_key_id FK
-        uuid document_id FK
+        bigint unsigned id PK, AUTO_INCREMENT
+        bigint unsigned api_key_id FK
+        bigint unsigned document_id FK
         string endpoint
         string method
         int response_code
@@ -577,7 +577,7 @@ ALTER TABLE document_statistics
 
 ### Catatan Implementasi
 
-1. **UUID sebagai Primary Key**: Semua tabel menggunakan UUID untuk menghindari collision dan meningkatkan keamanan
+1. **Auto-Increment INT sebagai Primary Key**: Semua tabel menggunakan `bigint unsigned` AUTO_INCREMENT (Laravel default) untuk konsistensi dan performa
 2. **Soft Delete**: Beberapa tabel menggunakan `deleted_at` untuk soft delete
 3. **JSONB Fields**: Digunakan untuk fleksibilitas data yang sering berubah
 4. **Full-Text Search**: Menggunakan `tsvector` PostgreSQL untuk pencarian cepat
