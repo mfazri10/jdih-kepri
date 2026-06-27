@@ -1,0 +1,22 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class SearchQuery extends Model
+{
+    protected $fillable = [
+        'query',
+        'results_count',
+        'hit_count',
+    ];
+
+    protected function casts(): array
+    {
+        return [
+            'results_count' => 'integer',
+            'hit_count'     => 'integer',
+        ];
+    }
+}

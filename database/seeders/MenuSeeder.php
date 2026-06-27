@@ -117,6 +117,188 @@ class MenuSeeder extends Seeder
             ],
         );
 
+        // ─── DOKUMEN HUKUM ──────────────────────────────────────
+        $dokumen = Menu::query()->updateOrCreate(
+            ['nama_menu' => 'Dokumen Hukum', 'menu_induk_id' => null],
+            [
+                'nama_fitur' => 'documents',
+                'alamat_url' => null,
+                'route_name' => null,
+                'ikon' => 'feather-file-text',
+                'tingkatan_menu' => 'parent',
+                'urutan' => 40,
+                'permission_name' => null,
+                'tag' => 'documents,dokumen,hukum,jdih',
+                'is_active' => true,
+            ],
+        );
+
+        Menu::query()->updateOrCreate(
+            ['nama_menu' => 'Daftar Dokumen', 'menu_induk_id' => $dokumen->id],
+            [
+                'nama_fitur' => 'documents',
+                'alamat_url' => null,
+                'route_name' => 'admin.documents.index',
+                'ikon' => 'feather-file',
+                'tingkatan_menu' => 'child',
+                'urutan' => 41,
+                'permission_name' => 'documents.view',
+                'tag' => 'documents,dokumen',
+                'is_active' => true,
+            ],
+        );
+
+        Menu::query()->updateOrCreate(
+            ['nama_menu' => 'Jenis Dokumen', 'menu_induk_id' => $dokumen->id],
+            [
+                'nama_fitur' => 'document-types',
+                'alamat_url' => null,
+                'route_name' => 'admin.document-types.index',
+                'ikon' => 'feather-layers',
+                'tingkatan_menu' => 'child',
+                'urutan' => 42,
+                'permission_name' => 'document-types.view',
+                'tag' => 'document-types,jenis',
+                'is_active' => true,
+            ],
+        );
+
+        Menu::query()->updateOrCreate(
+            ['nama_menu' => 'Kategori', 'menu_induk_id' => $dokumen->id],
+            [
+                'nama_fitur' => 'categories',
+                'alamat_url' => null,
+                'route_name' => 'admin.categories.index',
+                'ikon' => 'feather-folder',
+                'tingkatan_menu' => 'child',
+                'urutan' => 43,
+                'permission_name' => 'categories.view',
+                'tag' => 'categories,kategori',
+                'is_active' => true,
+            ],
+        );
+
+        Menu::query()->updateOrCreate(
+            ['nama_menu' => 'Tematik', 'menu_induk_id' => $dokumen->id],
+            [
+                'nama_fitur' => 'themes',
+                'alamat_url' => null,
+                'route_name' => 'admin.themes.index',
+                'ikon' => 'feather-tag',
+                'tingkatan_menu' => 'child',
+                'urutan' => 44,
+                'permission_name' => 'themes.view',
+                'tag' => 'themes,tematik',
+                'is_active' => true,
+            ],
+        );
+
+        Menu::query()->updateOrCreate(
+            ['nama_menu' => 'Tag', 'menu_induk_id' => $dokumen->id],
+            [
+                'nama_fitur' => 'tags',
+                'alamat_url' => null,
+                'route_name' => 'admin.tags.index',
+                'ikon' => 'feather-bookmark',
+                'tingkatan_menu' => 'child',
+                'urutan' => 45,
+                'permission_name' => 'tags.view',
+                'tag' => 'tags,label',
+                'is_active' => true,
+            ],
+        );
+
+        // ─── LAYANAN PUBLIK ────────────────────────────────────
+        $layanan = Menu::query()->updateOrCreate(
+            ['nama_menu' => 'Layanan Publik', 'menu_induk_id' => null],
+            [
+                'nama_fitur' => 'public-services',
+                'alamat_url' => null,
+                'route_name' => null,
+                'ikon' => 'feather-heart',
+                'tingkatan_menu' => 'parent',
+                'urutan' => 50,
+                'permission_name' => null,
+                'tag' => 'consultations,hearings,feedbacks,subscriptions',
+                'is_active' => true,
+            ],
+        );
+
+        Menu::query()->updateOrCreate(
+            ['nama_menu' => 'Konsultasi Hukum', 'menu_induk_id' => $layanan->id],
+            [
+                'nama_fitur' => 'consultations',
+                'alamat_url' => null,
+                'route_name' => 'admin.consultations.index',
+                'ikon' => 'feather-message-circle',
+                'tingkatan_menu' => 'child',
+                'urutan' => 51,
+                'permission_name' => 'consultations.view',
+                'tag' => 'consultations,konsultasi',
+                'is_active' => true,
+            ],
+        );
+
+        Menu::query()->updateOrCreate(
+            ['nama_menu' => 'Public Hearing', 'menu_induk_id' => $layanan->id],
+            [
+                'nama_fitur' => 'hearings',
+                'alamat_url' => null,
+                'route_name' => 'admin.hearings.index',
+                'ikon' => 'feather-mic',
+                'tingkatan_menu' => 'child',
+                'urutan' => 52,
+                'permission_name' => 'hearings.view',
+                'tag' => 'hearings,hearing',
+                'is_active' => true,
+            ],
+        );
+
+        Menu::query()->updateOrCreate(
+            ['nama_menu' => 'Permintaan Informasi', 'menu_induk_id' => $layanan->id],
+            [
+                'nama_fitur' => 'information-requests',
+                'alamat_url' => null,
+                'route_name' => 'admin.information-requests.index',
+                'ikon' => 'feather-file-plus',
+                'tingkatan_menu' => 'child',
+                'urutan' => 53,
+                'permission_name' => 'information-requests.view',
+                'tag' => 'information-requests,informasi',
+                'is_active' => true,
+            ],
+        );
+
+        Menu::query()->updateOrCreate(
+            ['nama_menu' => 'Umpan Balik', 'menu_induk_id' => $layanan->id],
+            [
+                'nama_fitur' => 'feedbacks',
+                'alamat_url' => null,
+                'route_name' => 'admin.feedbacks.index',
+                'ikon' => 'feather-thumbs-up',
+                'tingkatan_menu' => 'child',
+                'urutan' => 54,
+                'permission_name' => 'feedbacks.view',
+                'tag' => 'feedbacks,feedback,umpan-balik',
+                'is_active' => true,
+            ],
+        );
+
+        Menu::query()->updateOrCreate(
+            ['nama_menu' => 'Langganan', 'menu_induk_id' => $layanan->id],
+            [
+                'nama_fitur' => 'subscriptions',
+                'alamat_url' => null,
+                'route_name' => 'admin.subscriptions.index',
+                'ikon' => 'feather-bell',
+                'tingkatan_menu' => 'child',
+                'urutan' => 55,
+                'permission_name' => 'subscriptions.view',
+                'tag' => 'subscriptions,langganan',
+                'is_active' => true,
+            ],
+        );
+
         Menu::query()->updateOrCreate(
             ['nama_menu' => 'Menu Admin', 'menu_induk_id' => $settings->id],
             [

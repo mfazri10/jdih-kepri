@@ -137,6 +137,10 @@
 
     <script src="{{ asset('assets/vendors/js/vendors.min.js') }}"></script>
     <script src="{{ asset('assets/js/common-init.min.js') }}"></script>
+
+    {{-- Accessibility Toolbar --}}
+    <x-accessibility-toolbar />
+
     @yield('scripts')
 </body>
 
